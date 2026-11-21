@@ -5,38 +5,40 @@
 	<title>MarketJSF - Eskaintza sortu</title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Tituloa</td>
-				<td><h:inputText /></td>
+				<td><h:inputText value="#{createSale.title}" /></td>
 			</tr>
 			<tr>
 				<td>Deskripzioa</td>
-				<td><h:inputTextarea /></td>
+				<td><h:inputTextarea value="#{createSale.description}" /></td>
 			</tr>
 			<tr>
 				<td>Egoera</td>
-				<td><h:selectOneMenu>
-						<f:selectItems />
+				<td><h:selectOneMenu value="#{createSale.status}" var="s"
+						itemValue="#{s.code}" itemLabel="#{s.status}">
+						<f:selectItems value="#{createSale.statusList}" />
 					</h:selectOneMenu></td>
 			</tr>
 			<tr>
 				<td>Argazkia</td>
-				<td><h:inputFile /></td>
+				<td><h:inputFile value="#{createSale.image}" /></td>
 			</tr>
 			<tr>
 				<td>Argitarapen eguna</td>
 				<td><p:datePicker monthNavigator="true" yearNavigator="true"
-						inline="true" /></td>
+						inline="true" value="#{createSale.pubDate}" /></td>
 			</tr>
 			<tr>
 				<td>Prezioa</td>
-				<td><h:inputText /></td>
+				<td><h:inputText value="#{createSale.price}" /></td>
 			</tr>
 		</table>
 		<p>
-			<h:commandButton value="Sortu Eskaintza" />
+			<h:commandButton value="Sortu Eskaintza"
+				action="#{createSale.createSale()}" />
 			<h:commandButton value="Itxi" action="main.xhtml" immediate="true" />
 		</p>
 		<h:messages style="color:red" />
